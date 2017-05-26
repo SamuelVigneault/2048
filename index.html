@@ -1,0 +1,126 @@
+<html>
+	<head>
+    <meta charset ="utf-8">
+    <title> 
+    2048
+    </title>
+    <link rel="stylesheet" type="text/css" href="2048.css" >
+    <script src="2048.js" src="2048(1).js"></script>
+    <!-- code to react from arrow keys being pressed -->
+    <script language="Javascript">
+        document.onkeydown= function(key){ reactKey(key); }
+        function reactKey(evt) {
+            // code for left arrow
+            if(evt.keyCode== 37) {
+                movement(3);
+            }
+            // code for up arrow
+            else if(evt.keyCode== 38) {
+                movement(4);
+            }
+            // code for right arrow
+            else if(evt.keyCode== 39) {
+                movement(1);
+            }
+            // code for down arrow
+            else if(evt.keyCode== 40) {
+                movement(2);
+            }
+        }
+    </script>
+	</head>
+	<body>
+        <!-- title of the page -->
+        <h1 id="title">Join the world's best 2048 players!</h1>
+        <div id="board">
+        <!-- first row of tiles -->
+        <tr>
+        <td><p class="margin">0</p></td>
+		<td><p id="tile1" class="tile">0</p></td>
+        <td><p id="tile2" class="tile">0</p></td>
+        <td><p id="tile3" class="tile">0</p></td>
+        <td><p id="tile4" class="tile">0</p></td>
+        <td><p class="margin">0</p></td>
+        </tr>
+        <!-- second row of tiles -->
+        <tr>
+        <td><p class="margin">0</p></td>
+		<td><p id="tile5" class="tile">0</p></td>
+        <td><p id="tile6" class="tile">0</p></td>
+        <td><p id="tile7" class="tile">0</p></td>
+        <td><p id="tile8" class="tile">0</p></td>
+        <td><p class="margin">0</p></td>
+        </tr>
+        <!-- third row of tiles -->
+        <tr>
+        <td><p class="margin">0</p></td>
+        <td><p id="tile9" class="tile">0</p></td>
+        <td><p id="tile10" class="tile">0</p></td>
+        <td><p id="tile11" class="tile">0</p></td>
+        <td><p id="tile12" class="tile">0</p></td>
+        <td><p class="margin">0</p></td>
+        </tr>
+        <!-- fourth row of tiles -->
+        <tr>
+        <td><p class="margin">0</p></td>
+        <td><p id="tile13" class="tile">0</p></td>
+        <td><p id="tile14" class="tile">0</p></td>
+        <td><p id="tile15" class="tile">0</p></td>
+        <td><p id="tile16" class="tile">0</p></td>
+        <td><p class="margin">0</p></td>
+        </tr>
+        <!-- score and time row-->
+        <tr>
+        <td><p class="margin1">0</p></td>
+		<td colspan ="2"><h1 id="yourscore">Score:</h1></td>
+        <td colspan ="2"><h1 class="score" id="score">0</h1></td>
+        <td colspan ="2"><h1 id="yourscore">Time:</h1></td>
+        <td colspan ="2"><h1 id="demo" class="score">0</h1></td>
+        <td><p class="margin1">0</p></td>
+        </tr>
+        <!-- restart button row-->
+        <tr>
+        <td><p class="margin">0</p></td>
+		<td><button class="restart" onclick="restart()">Start a new game</button></td>
+        <td><p class="margin">0</p></td>
+        </tr>
+        </div>
+        <!-- code for the timer on the page -->
+        <script>    
+        var p =0;
+        if( p == 0){
+            var start = new Date().getTime(); 
+            p = 1;
+        }
+        // Update the count down every 0.1 second
+        var x = setInterval(function() {
+                
+        // Get todays date and time
+        var now = new Date().getTime();
+
+        // Find the distance between now an the count down date
+        var distance = now - start;
+
+        // Time calculations for days, hours, minutes and seconds
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        var tenth = Math.floor((distance % (100 * 60)) / 1000);
+
+        // Display the result in the element with id="demo"
+        document.getElementById("demo").innerHTML = minutes + "m " + seconds + "s ";
+
+        // If the count down is finished, write some text
+        if (distance <= 0) {
+            clearInterval(x);
+            document.getElementById("demo").innerHTML = "EXPIRED";
+            } 
+            }, 100);
+        </script>  
+        <!-- code for the timer found here and modified:
+
+        https://www.w3schools.com/howto/howto_js_countdown.asp
+
+-->
+	</body>
+</html>
